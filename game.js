@@ -111,19 +111,22 @@ window.addEventListener('keydown', (e) => {
 });
 
 // --- INTEGRACIÓN DISCORD ---
-import { DiscordSDK } from "https://cdn.skypack.dev/@discord/embedded-app-sdk";
-
 const queryParams = new URLSearchParams(window.location.search);
 const isDiscord = queryParams.has("frame_id");
 
+logToScreen("Iniciando script...");
 logToScreen("Detección Discord: " + isDiscord);
 
 initGame();
 
 if (isDiscord) {
+    // Usar el SDK desde la variable global cargada en el index.html
+    const DiscordSDK = window.discordSdk.DiscordSDK;
     const discordSdk = new DiscordSDK("1324706596395352124");
+    
     async function setupDiscord() {
         try {
+            logToScreen("Esperando SDK...");
             await discordSdk.ready();
             logToScreen("Discord SDK listo!");
             await discordSdk.commands.authorize({
