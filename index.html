@@ -8,10 +8,8 @@
 </head>
 <body>
     <div id="game-container">
-        <h1>XataCraft</h1>
         <div id="grid"></div>
-        <div id="controls-hint">Usa <b>WASD</b> para moverte</div>
-        <div id="debug-log" style="margin-top: 20px; font-size: 10px; color: #5865f2; text-align: left; max-height: 100px; overflow-y: auto; background: #000; padding: 5px; border-radius: 5px; font-family: monospace;"></div>
+        <div id="debug-log" style="margin-top: 10px; font-size: 9px; color: #5865f2; text-align: left; max-height: 40px; overflow-y: auto; background: #000; padding: 3px; border-radius: 5px; font-family: monospace;"></div>
     </div>
     <script>
         window.addEventListener('error', function(e) {
@@ -19,6 +17,6 @@
             if(log) log.innerHTML += '<div style="color:red">> ERROR: ' + e.message + '</div>';
         });
     </script>
-    <script src="xatacraft.js?v=8"></script>
+    <script src="xatacraft.js?v=9"></script>
 </body>
 </html>

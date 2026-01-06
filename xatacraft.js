@@ -10,8 +10,9 @@ function logToScreen(msg) {
     console.log(msg);
 }
 
-const GRID_SIZE = 11;
-const TREE_COUNT = 30;
+const GRID_WIDTH = 14;
+const GRID_HEIGHT = 8;
+const TREE_COUNT = 25;
 
 const EMOJIS = {
     GRASS: '', 
@@ -22,18 +23,18 @@ const EMOJIS = {
     PLAYER_RIGHT: '➡️'
 };
 
-let playerX = 5;
-let playerY = 5;
+let playerX = 7;
+let playerY = 4;
 let playerDir = 'up';
 let map = [];
 
 function initGame() {
-    logToScreen("Iniciando mapa...");
+    logToScreen("Iniciando mapa 14x8...");
     try {
         // Generar mapa
-        for (let y = 0; y < GRID_SIZE; y++) {
+        for (let y = 0; y < GRID_HEIGHT; y++) {
             map[y] = [];
-            for (let x = 0; x < GRID_SIZE; x++) {
+            for (let x = 0; x < GRID_WIDTH; x++) {
                 map[y][x] = 'grass';
             }
         }
@@ -41,9 +42,9 @@ function initGame() {
         // Colocar árboles
         let placed = 0;
         while (placed < TREE_COUNT) {
-            const x = Math.floor(Math.random() * GRID_SIZE);
-            const y = Math.floor(Math.random() * GRID_SIZE);
-            if (x === 5 && y === 5) continue;
+            const x = Math.floor(Math.random() * GRID_WIDTH);
+            const y = Math.floor(Math.random() * GRID_HEIGHT);
+            if (x === playerX && y === playerY) continue;
             if (map[y][x] === 'grass') {
                 map[y][x] = 'tree';
                 placed++;
@@ -65,8 +66,8 @@ function draw() {
         }
         gridElement.innerHTML = '';
 
-        for (let y = 0; y < GRID_SIZE; y++) {
-            for (let x = 0; x < GRID_SIZE; x++) {
+        for (let y = 0; y < GRID_HEIGHT; y++) {
+            for (let x = 0; x < GRID_WIDTH; x++) {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 
@@ -92,7 +93,7 @@ window.addEventListener('keydown', (e) => {
     let newDir = playerDir;
 
     const key = e.key.toLowerCase();
-    logToScreen("Tecla presionada: " + key);
+    logToScreen("Tecla pulsada: " + key);
 
     if (key === 'w') { newY--; newDir = 'up'; }
     else if (key === 's') { newY++; newDir = 'down'; }
@@ -100,7 +101,7 @@ window.addEventListener('keydown', (e) => {
     else if (key === 'd') { newX++; newDir = 'right'; }
     else { return; } 
 
-    if (newX >= 0 && newX < GRID_SIZE && newY >= 0 && newY < GRID_SIZE) {
+    if (newX >= 0 && newX < GRID_WIDTH && newY >= 0 && newY < GRID_HEIGHT) {
         if (map[newY][newX] !== 'tree') {
             playerX = newX;
             playerY = newY;
@@ -114,7 +115,7 @@ window.addEventListener('keydown', (e) => {
 const queryParams = new URLSearchParams(window.location.search);
 const isDiscord = queryParams.has("frame_id");
 
-logToScreen("Iniciando XataCraft v8...");
-logToScreen("Resolución optimizada para Discord (400px alto)");
+logToScreen("Iniciando XataCraft v9...");
+logToScreen("Resolución 14x8 (Ancho x Alto)");
 
 initGame();

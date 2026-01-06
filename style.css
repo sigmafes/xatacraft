@@ -26,8 +26,8 @@ h1 {
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(11, 24px);
-    grid-template-rows: repeat(11, 24px);
+    grid-template-columns: repeat(14, 28px);
+    grid-template-rows: repeat(8, 28px);
     gap: 1px;
     margin: 5px auto;
     border: 2px solid #30363d;
@@ -36,12 +36,12 @@ h1 {
 }
 
 .cell {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 20px;
     background-color: #2d333b;
     border-radius: 2px;
     user-select: none;
