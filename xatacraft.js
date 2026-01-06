@@ -114,7 +114,7 @@ window.addEventListener('keydown', (e) => {
 const queryParams = new URLSearchParams(window.location.search);
 const isDiscord = queryParams.has("frame_id");
 
-logToScreen("Iniciando script v5...");
+logToScreen("Iniciando XataCraft v7...");
 logToScreen("Detección Discord: " + isDiscord);
 
 initGame();
