@@ -2,7 +2,7 @@ const GRID_SIZE = 11;
 const TREE_COUNT = 30;
 
 const EMOJIS = {
-    GRASS: '🟩',
+    GRASS: '⬜', // Usaremos un color neutro de fondo o nada para que se vea el fondo de la celda
     TREE: '🌲',
     PLAYER_UP: '⬆️',
     PLAYER_DOWN: '⬇️',

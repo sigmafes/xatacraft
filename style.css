@@ -34,9 +34,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    background-color: #10b981; /* Verde base */
+    font-size: 28px;
+    background-color: #2d333b; /* Color oscuro neutral */
     border-radius: 4px;
+    user-select: none;
 }
 
 #controls-hint {
