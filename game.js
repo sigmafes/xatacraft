@@ -86,38 +86,35 @@ window.addEventListener('keydown', (e) => {
     draw();
 });
 
-// Integración con Discord Embedded App SDK
+// --- INTEGRACIÓN DISCORD (MODO HÍBRIDO) ---
 import { DiscordSDK } from "https://cdn.skypack.dev/@discord/embedded-app-sdk";
 
-// Verificar si estamos dentro de Discord (buscando el frame_id en la URL)
 const queryParams = new URLSearchParams(window.location.search);
 const isDiscord = queryParams.has("frame_id");
 
-let discordSdk = null;
-if (isDiscord) {
-    discordSdk = new DiscordSDK("1324706596395352124");
-}
+// 1. INICIAMOS EL JUEGO DE INMEDIATO
+// Esto evita que la pantalla se quede en negro si Discord tarda en responder
+initGame();
 
-async function setupDiscord() {
-    if (isDiscord && discordSdk) {
+// 2. CONFIGURACIÓN DE DISCORD EN SEGUNDO PLANO
+if (isDiscord) {
+    const discordSdk = new DiscordSDK("1324706596395352124");
+    
+    async function setupDiscord() {
         try {
             await discordSdk.ready();
-            console.log("Discord SDK is ready");
+            console.log("Discord SDK listo");
             
+            // Intentamos autorizar (esto es opcional para que el juego funcione)
             await discordSdk.commands.authorize({
                 client_id: "1324706596395352124",
                 response_type: "code",
-                scope: ["identify", "guilds"],
+                scope: ["identify"],
                 prompt: "none",
             });
         } catch (e) {
-            console.warn("Error en la conexión con Discord:", e);
+            console.warn("Discord SDK no pudo conectar, pero el juego sigue:", e);
         }
-    } else {
-        console.log("Ejecutando fuera de Discord (Web Mode)");
     }
-    
-    initGame();
+    setupDiscord();
 }
-
-setupDiscord();
