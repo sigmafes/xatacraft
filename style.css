@@ -12,35 +12,56 @@ body {
 #game-container {
     text-align: center;
     background-color: #161b22;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    max-height: 380px; /* Forzamos un límite para Discord */
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 18px;
+    margin: 5px 0;
 }
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(11, 32px);
-    grid-template-rows: repeat(11, 32px);
-    gap: 2px;
-    margin: 15px auto;
+    grid-template-columns: repeat(11, 24px);
+    grid-template-rows: repeat(11, 24px);
+    gap: 1px;
+    margin: 5px auto;
     border: 2px solid #30363d;
-    padding: 5px;
+    padding: 3px;
     background-color: #0d1117;
 }
 
 .cell {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    background-color: #2d333b; /* Color oscuro neutral */
-    border-radius: 4px;
+    font-size: 16px;
+    background-color: #2d333b;
+    border-radius: 2px;
     user-select: none;
 }
 
 #controls-hint {
-    margin-top: 15px;
+    margin-top: 5px;
+    font-size: 12px;
     color: #8b949e;
+}
+
+#debug-log {
+    margin-top: 10px;
+    font-size: 9px;
+    color: #5865f2;
+    text-align: left;
+    max-height: 40px; /* Reducimos mucho el log */
+    overflow-y: auto;
+    background: #000;
+    padding: 3px;
+    border-radius: 5px;
+    font-family: monospace;
 }
