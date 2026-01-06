@@ -86,26 +86,35 @@ window.addEventListener('keydown', (e) => {
     draw();
 });
 
-// Integración con Discord Embedded App SDK (Usando módulos para evitar el error de 'require')
+// Integración con Discord Embedded App SDK
 import { DiscordSDK } from "https://cdn.skypack.dev/@discord/embedded-app-sdk";
 
-const discordSdk = new DiscordSDK("1324706596395352124");
+// Verificar si estamos dentro de Discord (buscando el frame_id en la URL)
+const queryParams = new URLSearchParams(window.location.search);
+const isDiscord = queryParams.has("frame_id");
+
+let discordSdk = null;
+if (isDiscord) {
+    discordSdk = new DiscordSDK("1324706596395352124");
+}
 
 async function setupDiscord() {
-    try {
-        await discordSdk.ready();
-        console.log("Discord SDK is ready");
-        
-        const { code } = await discordSdk.commands.authorize({
-            client_id: "1324706596395352124",
-            response_type: "code",
-            scope: ["identify", "guilds"],
-            prompt: "none",
-        });
-        
-        console.log("Authenticated with code:", code);
-    } catch (e) {
-        console.warn("No se pudo conectar con Discord (es normal si estás fuera de Discord):", e);
+    if (isDiscord && discordSdk) {
+        try {
+            await discordSdk.ready();
+            console.log("Discord SDK is ready");
+            
+            await discordSdk.commands.authorize({
+                client_id: "1324706596395352124",
+                response_type: "code",
+                scope: ["identify", "guilds"],
+                prompt: "none",
+            });
+        } catch (e) {
+            console.warn("Error en la conexión con Discord:", e);
+        }
+    } else {
+        console.log("Ejecutando fuera de Discord (Web Mode)");
     }
     
     initGame();
