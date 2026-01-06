@@ -86,4 +86,29 @@ window.addEventListener('keydown', (e) => {
     draw();
 });
 
-initGame();
+// Integración con Discord Embedded App SDK
+const discordSdk = new window.discordSdk.DiscordSDK("1324706596395352124"); // Reemplaza con tu Application ID si es diferente
+
+async function setupDiscord() {
+    try {
+        await discordSdk.ready();
+        console.log("Discord SDK is ready");
+        
+        // Autenticación básica
+        const { code } = await discordSdk.commands.authorize({
+            client_id: "1324706596395352124",
+            response_type: "code",
+            scope: ["identify", "guilds"],
+            prompt: "none",
+        });
+        
+        console.log("Authenticated with code:", code);
+    } catch (e) {
+        console.warn("No se pudo conectar con Discord (es normal si estás fuera de Discord):", e);
+    }
+    
+    // Iniciar el juego de todas formas
+    initGame();
+}
+
+setupDiscord();
