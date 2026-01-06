@@ -114,33 +114,7 @@ window.addEventListener('keydown', (e) => {
 const queryParams = new URLSearchParams(window.location.search);
 const isDiscord = queryParams.has("frame_id");
 
-logToScreen("Iniciando script v4...");
+logToScreen("Iniciando script v5...");
 logToScreen("Detección Discord: " + isDiscord);
 
 initGame();
-
-// Comentamos el SDK temporalmente para ver si el juego base carga solo
-/*
-if (isDiscord && window.discordSdk) {
-    const DiscordSDK = window.discordSdk.DiscordSDK;
-    const discordSdk = new DiscordSDK("1324706596395352124");
-    
-    async function setupDiscord() {
-        try {
-            logToScreen("Esperando SDK...");
-            await discordSdk.ready();
-            logToScreen("Discord SDK listo!");
-            await discordSdk.commands.authorize({
-                client_id: "1324706596395352124",
-                response_type: "code",
-                scope: ["identify"],
-                prompt: "none",
-            });
-            logToScreen("Autorización completada");
-        } catch (e) {
-            logToScreen("Error SDK: " + e.message);
-        }
-    }
-    setupDiscord();
-}
-*/
