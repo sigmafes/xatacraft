@@ -114,13 +114,14 @@ window.addEventListener('keydown', (e) => {
 const queryParams = new URLSearchParams(window.location.search);
 const isDiscord = queryParams.has("frame_id");
 
-logToScreen("Iniciando script...");
+logToScreen("Iniciando script v4...");
 logToScreen("Detección Discord: " + isDiscord);
 
 initGame();
 
-if (isDiscord) {
-    // Usar el SDK desde la variable global cargada en el index.html
+// Comentamos el SDK temporalmente para ver si el juego base carga solo
+/*
+if (isDiscord && window.discordSdk) {
     const DiscordSDK = window.discordSdk.DiscordSDK;
     const discordSdk = new DiscordSDK("1324706596395352124");
     
@@ -142,3 +143,4 @@ if (isDiscord) {
     }
     setupDiscord();
 }
+*/

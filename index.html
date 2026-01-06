@@ -13,7 +13,12 @@
         <div id="controls-hint">Usa <b>WASD</b> para moverte</div>
         <div id="debug-log" style="margin-top: 20px; font-size: 10px; color: #5865f2; text-align: left; max-height: 100px; overflow-y: auto; background: #000; padding: 5px; border-radius: 5px; font-family: monospace;"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@discord/embedded-app-sdk@1.0.0/dist/main.js"></script>
+    <script>
+        window.addEventListener('error', function(e) {
+            var log = document.getElementById('debug-log');
+            if(log) log.innerHTML += '<div style="color:red">> ERROR: ' + e.message + '</div>';
+        });
+    </script>
     <script src="game.js"></script>
 </body>
 </html>
