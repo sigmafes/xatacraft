@@ -86,15 +86,16 @@ window.addEventListener('keydown', (e) => {
     draw();
 });
 
-// Integración con Discord Embedded App SDK
-const discordSdk = new window.discordSdk.DiscordSDK("1324706596395352124"); // Reemplaza con tu Application ID si es diferente
+// Integración con Discord Embedded App SDK (Usando módulos para evitar el error de 'require')
+import { DiscordSDK } from "https://cdn.skypack.dev/@discord/embedded-app-sdk";
+
+const discordSdk = new DiscordSDK("1324706596395352124");
 
 async function setupDiscord() {
     try {
         await discordSdk.ready();
         console.log("Discord SDK is ready");
         
-        // Autenticación básica
         const { code } = await discordSdk.commands.authorize({
             client_id: "1324706596395352124",
             response_type: "code",
@@ -107,7 +108,6 @@ async function setupDiscord() {
         console.warn("No se pudo conectar con Discord (es normal si estás fuera de Discord):", e);
     }
     
-    // Iniciar el juego de todas formas
     initGame();
 }
 
