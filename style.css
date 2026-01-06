@@ -19,22 +19,22 @@ body {
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(11, 40px);
-    grid-template-rows: repeat(11, 40px);
+    grid-template-columns: repeat(11, 32px);
+    grid-template-rows: repeat(11, 32px);
     gap: 2px;
-    margin: 20px auto;
+    margin: 15px auto;
     border: 2px solid #30363d;
     padding: 5px;
     background-color: #0d1117;
 }
 
 .cell {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 20px;
     background-color: #2d333b; /* Color oscuro neutral */
     border-radius: 4px;
     user-select: none;
